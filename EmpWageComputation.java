@@ -5,14 +5,17 @@ public class EmpWageComputation {
 	static final int IS_PART_TIME=2;
 	static final int EMP_WAGE_PER_HOUR = 20;
 	static final int WORKING_DAYS_IN_MONTH=20;
+	static final int TOTAL_HRS_IN_MONTH=100;
 
 	public static int getMonthlyWage() {
 		// VARIABLES
 		int empHrs=0;
 		int empWage=0;
 		int monthlyWage=0;
+		int totalWorkHr=0;
+		int workingDays=0;
 		// COMPUTATION
-		for(int day=1; day<=WORKING_DAYS_IN_MONTH; day++){
+		while(totalWorkHr < TOTAL_HRS_IN_MONTH && workingDays < WORKING_DAYS_IN_MONTH) {
 			int empCheck = (int)Math.floor(Math.random() * 10) % 3;
 			switch (empCheck) {
 				case	IS_FULL_TIME:
@@ -26,8 +29,11 @@ public class EmpWageComputation {
 					break;
 			}
 			empWage = empHrs * EMP_WAGE_PER_HOUR;
-			monthlyWage=monthlyWage + empWage;
+			totalWorkHr=totalWorkHr + empHrs;
+			workingDays++;
 		}
+		System.out.println("Total Work Hour In Month:"+totalWorkHr);
+		monthlyWage=totalWorkHr * EMP_WAGE_PER_HOUR;
 		return monthlyWage;
 	}
 
