@@ -1,42 +1,38 @@
 public class EmpWageComputation {
 	// CONSTANTS
-	static final int IS_FULL_TIME = 1;
-	static final int IS_PART_TIME=2;
-	static final int EMP_WAGE_PER_HOUR = 20;
-	static final int WORKING_DAYS_IN_MONTH=20;
-	static final int TOTAL_HRS_IN_MONTH=100;
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
 
-	public static int getMonthlyWage() {
+	public static int calcEmpWageForCompany(String company, int empWagePerHr, int workingDaysInMonth, int totalHrsInMonth) {
 		// VARIABLES
 		int empHrs=0;
-		int empWage=0;
 		int monthlyWage=0;
 		int totalWorkHr=0;
 		int workingDays=0;
 		// COMPUTATION
-		while(totalWorkHr < TOTAL_HRS_IN_MONTH && workingDays < WORKING_DAYS_IN_MONTH) {
+		while(totalWorkHr <= totalHrsInMonth && workingDays < workingDaysInMonth) {
 			int empCheck = (int)Math.floor(Math.random() * 10) % 3;
 			switch (empCheck) {
-				case	IS_FULL_TIME:
-					empHrs=8;
-					break;
 				case	IS_PART_TIME:
 					empHrs=4;
+					break;
+				case	IS_FULL_TIME:
+					empHrs=8;
 					break;
 				default:
 					empHrs=0;
 					break;
 			}
-			empWage = empHrs * EMP_WAGE_PER_HOUR;
-			totalWorkHr=totalWorkHr + empHrs;
+			totalWorkHr +=empHrs;
 			workingDays++;
 		}
-		System.out.println("Total Work Hour In Month:"+totalWorkHr);
-		monthlyWage=totalWorkHr * EMP_WAGE_PER_HOUR;
-		return monthlyWage;
+		int totalEmpWage=totalWorkHr * empWagePerHr;
+		System.out.println("Total Emp Wage For Company "+company+" Is: "+totalEmpWage);
+		return totalEmpWage;
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Employee Monthly Wage: "+ getMonthlyWage());
+		calcEmpWageForCompany("D-mart",20,20,100);
+		calcEmpWageForCompany("Reliance",10,20,100);
 	}
 }
