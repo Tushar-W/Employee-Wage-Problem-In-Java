@@ -1,8 +1,8 @@
 public class CompanyEmpWage {
 	private final String companyName;
 	private final int empWagePerHr;
-   private final int workingDaysInMonth;
-   private final int totalHrsInMonth;
+	private final int workingDaysInMonth;
+	private final int totalHrsInMonth;
 
    public CompanyEmpWage(String companyName, int empWagePerHr, int workingDaysInMonth, int totalHrsInMonth) {
       this.companyName=companyName;
