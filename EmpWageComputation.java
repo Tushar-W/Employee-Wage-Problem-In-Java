@@ -7,9 +7,11 @@ public class EmpWageComputation {
 
    private int noOfCompanies=0;
    private ArrayList<CompanyEmpWage> companyWageDataList;
+	private ArrayList<Integer> dailyEmpWageList;
 
    public EmpWageComputation() {
       companyWageDataList = new ArrayList<CompanyEmpWage>();
+		dailyEmpWageList = new ArrayList<Integer>();
    }
 
    private void addCompanyData(String companyName, int empWagePerHr, int workingDays, int totalWorkHr) {
@@ -45,6 +47,9 @@ public class EmpWageComputation {
                empHrs=0;
                break;
          }
+			int dailyWage=empHrs * companyWageData.getEmpWagePerHr();
+			dailyEmpWageList.add(dailyWage);
+			System.out.println("Daily Emp Wage for Company "+companyWageData.getCompanyName()+" is"+dailyEmpWageList.get(workingDays));
          totalWorkHr +=empHrs;
          workingDays++;
       }
