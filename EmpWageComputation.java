@@ -3,7 +3,19 @@ public class EmpWageComputation {
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
-	public static int calcEmpWageForCompany(String company, int empWagePerHr, int workingDaysInMonth, int totalHrsInMonth) {
+	private final String company;
+	private final int empWagePerHr;
+	private final int workingDaysInMonth;
+	private final int totalHrsInMonth;
+
+	public EmpWageComputation(String company, int empWagePerHr, int workingDaysInMonth, int totalHrsInMonth) {
+		this.company=company;
+		this.empWagePerHr=empWagePerHr;
+		this.workingDaysInMonth=workingDaysInMonth;
+		this.totalHrsInMonth=totalHrsInMonth;
+	}
+
+	public int computeEmpWage() {
 		// VARIABLES
 		int empHrs=0;
 		int monthlyWage=0;
@@ -26,13 +38,14 @@ public class EmpWageComputation {
 			totalWorkHr +=empHrs;
 			workingDays++;
 		}
-		int totalEmpWage=totalWorkHr * empWagePerHr;
-		System.out.println("Total Emp Wage For Company "+company+" Is: "+totalEmpWage);
-		return totalEmpWage;
+		System.out.println("Total Work Hour:" +totalWorkHr);
+		return totalWorkHr * empWagePerHr;
 	}
 
 	public static void main(String[] args) {
-		calcEmpWageForCompany("D-mart",20,20,100);
-		calcEmpWageForCompany("Reliance",10,20,100);
+		EmpWageComputation dmart=new EmpWageComputation("D-mart",20,20,100);
+		EmpWageComputation reliance=new EmpWageComputation("Reliance",10,10,50);
+		System.out.println("Total Emp Wage For Company "+dmart.company+" Is: "+dmart.computeEmpWage());
+		System.out.println("Total Emp Wage For Company "+reliance.company+" Is: "+reliance.computeEmpWage());
 	}
 }
