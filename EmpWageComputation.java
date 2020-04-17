@@ -1,24 +1,27 @@
+import java.util.ArrayList;
+
 public class EmpWageComputation {
    // CONSTANTS
    public static final int IS_PART_TIME = 1;
    public static final int IS_FULL_TIME = 2;
 
    private int noOfCompanies=0;
-   private CompanyEmpWage[] companyWageData;
+   private ArrayList<CompanyEmpWage> companyWageDataList;
 
    public EmpWageComputation() {
-      companyWageData = new CompanyEmpWage[2];
+      companyWageDataList = new ArrayList<CompanyEmpWage>();
    }
 
    private void addCompanyData(String companyName, int empWagePerHr, int workingDays, int totalWorkHr) {
-      companyWageData[noOfCompanies] = new CompanyEmpWage(companyName,empWagePerHr,workingDays,totalWorkHr);
-      noOfCompanies++;
+      CompanyEmpWage companyWageData = new CompanyEmpWage(companyName,empWagePerHr,workingDays,totalWorkHr);
+      companyWageDataList.add(companyWageData);
    }
 
    public void getEmpWage() {
-      for(int i=0; i<noOfCompanies; i++) {
-         int totalEmpWage=this.computeEmpWage(companyWageData[i]);
-         System.out.println("Total Emp Wage for Company "+companyWageData[i].getCompanyName()+" is"+totalEmpWage);
+      for(int i=0; i<companyWageDataList.size(); i++) {
+			CompanyEmpWage companyWageData = companyWageDataList.get(i);
+         int totalEmpWage = this.computeEmpWage(companyWageData);
+         System.out.println("Total Emp Wage for Company "+companyWageData.getCompanyName()+" is"+totalEmpWage);
       }
    }
 
@@ -50,9 +53,9 @@ public class EmpWageComputation {
    }
 
    public static void main(String[] args) {
-      EmpWageComputation e1=new EmpWageComputation();
-      e1.addCompanyData("Dmart",20,2,10);
-      e1.addCompanyData("Big-Bazar",20,2,20);
-      e1.getEmpWage();
+      EmpWageComputation empWageBuilder=new EmpWageComputation();
+      empWageBuilder.addCompanyData("Dmart",20,20,100);
+      empWageBuilder.addCompanyData("Big-Bazar",20,10,50);
+      empWageBuilder.getEmpWage();
    }
 }

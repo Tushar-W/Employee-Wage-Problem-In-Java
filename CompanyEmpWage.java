@@ -1,6 +1,6 @@
 public class CompanyEmpWage {
 	private final String companyName;
-   private final int empWagePerHr;
+	private final int empWagePerHr;
    private final int workingDaysInMonth;
    private final int totalHrsInMonth;
 
